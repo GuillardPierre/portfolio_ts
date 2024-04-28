@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="fr" dir="ltr">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="author" content="Pierre Guillard" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" href="/css/snake.css" />
+		<link rel="stylesheet" href="/css/header.css" />
+		<link rel="shortcut icon" href="/images/fusee.png" type="image/x-icon" />
+		<title>Snake 🐍</title>
+	</head>
+	<body>
+		<%- include('partials/header') %>
+		<main>
+			<h1>SNAKE</h1>
+			<div class="container">
+				<section id="scoreZone">Ton score : 0</section>
+				<section id="gridZone"></section>
+			</div>
+			<div class="mobileCommands">
+				<div class="touche ArrowUp">⬆️</div>
+				<div class="touche ArrowDown">⬇️</div>
+				<div class="touche ArrowLeft">⬅️</div>
+				<div class="touche ArrowRight">➡️</div>
+			</div>
+			<section id="popUp">
+				<h2>Game over</h2>
+				<p>
+					Ton score est de <span id="score" aria-label="score final">20</span>
+				</p>
+				<button id="btnRejouer">Rejouer ?</button>
+			</section>
+		</main>
+		<script src="/js/snake.js"></script>
+	</body>
+</html>

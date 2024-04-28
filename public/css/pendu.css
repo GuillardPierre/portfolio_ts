@@ -1,0 +1,138 @@
+* {
+	font-family: Helvetica, sans-serif;
+}
+
+html,
+header {
+	margin: 0;
+	padding: 0;
+}
+
+h1 {
+	text-align: center;
+}
+
+.motADeviner2 {
+	display: flex;
+	margin-bottom: 20px;
+}
+
+.motADeviner2 img {
+	width: 64px;
+	height: 64px;
+}
+
+#imageDuJeu {
+	width: 210px;
+	height: 210px;
+	border: 2px solid;
+	border-radius: 10px;
+	margin: auto;
+	margin-bottom: 20px;
+}
+
+#imageDuJeu img {
+	width: 200px;
+	display: block;
+	padding: 5px;
+}
+
+.container {
+	display: flex;
+	justify-content: center;
+	font-size: 50px;
+}
+
+#zoneSaisie {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin-top: 15px;
+}
+
+footer {
+	text-align: center;
+	margin: 50px;
+}
+
+#zoneReponseProposition,
+#zoneLettreDejaProposees {
+	border-style: solid;
+	border-width: 2px;
+	border-radius: 50px 10px;
+	padding: 20px;
+	margin: 30px;
+	text-align: center;
+	font-size: larger;
+}
+
+.container2 {
+	display: flex;
+	justify-content: center;
+	font-size: 25px;
+}
+
+.clavierEntier {
+	border: 2px solid;
+	border-radius: 10px;
+	display: block;
+	width: 850px;
+	margin: auto;
+	padding: 5px;
+}
+
+.clavierLigne {
+	display: flex;
+	justify-content: center;
+}
+
+.boiteLettre img {
+	width: 64px;
+	height: 64px;
+	padding: 8px 4px;
+	margin: 0px 2px;
+	border: 2px solid;
+	border-radius: 10px;
+}
+
+.clavierEntier img:hover {
+	cursor: pointer;
+}
+
+.lettreVide {
+	width: 64px;
+	height: 64px;
+	padding: 8px 4px;
+	margin: 0px 2px;
+	border: 2px solid;
+	border-radius: 10px;
+}
+
+.popup {
+	z-index: 1;
+	height: 150px;
+	width: 200px;
+	text-align: center;
+	border: 2px solid;
+	border-radius: 10px;
+	padding: 5px;
+	position: fixed;
+	top: 20em;
+	left: 45%;
+	background-color: green;
+	display: none;
+}
+
+.resultat {
+	padding-top: 50px;
+}
+
+.popup button {
+	margin-top: 20px;
+	border-radius: 10px;
+	padding: 5px;
+}
+
+.popup button:hover {
+	cursor: pointer;
+}

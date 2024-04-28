@@ -1,0 +1,104 @@
+main > h1,
+main > h2 {
+	text-align: center;
+	color: #ff652f;
+}
+
+body {
+	background-color: #272727;
+	font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+	margin: auto;
+	margin-top: 150px;
+}
+
+.container {
+	margin-block: 100px;
+}
+
+button {
+	display: block;
+	margin: auto;
+	border-radius: 25px;
+	padding: 15px;
+	margin-top: 30px;
+	background-color: #ff652f;
+	text-align: center;
+	color: #272727;
+	border: none;
+	font-size: larger;
+}
+
+.image img {
+	display: block;
+	margin: 5px auto;
+	border: solid 1px;
+	border-radius: 25px;
+}
+
+.card {
+	perspective: 1000px;
+}
+.content-card {
+	margin: 0 auto;
+	padding: 10px;
+	width: 550px;
+	color: #ff652f;
+	border: solid 1px;
+	border-radius: 30px;
+	transition: all 0.5s ease-out;
+}
+
+.containerStats {
+	display: flex;
+	justify-content: space-between;
+}
+
+.TypePV {
+	display: flex;
+}
+
+.imgType img {
+	height: 50px;
+	width: 50px;
+	margin-top: 7px;
+	margin-right: -7px;
+	border-radius: 50px;
+}
+
+.containerStats h2 {
+	margin-left: 20px;
+	margin-right: 20px;
+}
+
+.containerStats .imgType {
+	padding-left: 160px;
+}
+
+.containerStats .imgType .img {
+	height: 50px;
+	width: 50px;
+}
+
+.pouvoir1,
+.pouvoir2 {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding-left: 75px;
+	padding-right: 50px;
+}
+
+.imgEtTalent1,
+.imgEtTalent2 {
+	display: flex;
+}
+
+.imgEtTalent1 img,
+.imgEtTalent2 img {
+	margin-left: -40px;
+	margin-right: 20px;
+	border-radius: 50px;
+}
