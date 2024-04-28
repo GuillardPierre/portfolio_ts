@@ -45,86 +45,6 @@ h4 {
 	margin-bottom: 25px;
 }
 
-.newcontainer > a:hover {
-	cursor: pointer;
-	color: orange;
-	background-color: white;
-	border: 1px solid orange;
-}
-
-.newcontainer:hover .image img {
-	filter: blur(2px);
-	transition: filter 200ms ease;
-}
-
-@keyframes right {
-	from {
-		opacity: 0;
-		transform: translateX(1000px);
-	}
-
-	to {
-		opacity: 1;
-		text-replace: translateY(0);
-	}
-}
-@keyframes left {
-	from {
-		opacity: 0;
-		transform: translateX(-1000px);
-	}
-
-	to {
-		opacity: 1;
-		text-replace: translateY(0);
-	}
-}
-
-@media (width < 1650px) {
-	.main-nav > article {
-		width: 50%;
-		margin: auto;
-	}
-}
-
-@media (width < 850px) {
-	.main-nav > article {
-		width: 90%;
-		margin: auto;
-	}
-
-	.main-nav > article > .newcontainer > figure {
-		width: 90%;
-		height: 200px;
-	}
-
-	.fromL {
-		font-size: 3rem;
-		text-align: center;
-		padding: 0;
-		margin: auto;
-		animation: left 1200ms;
-		text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
-	}
-
-	.fromR {
-		font-size: 3rem;
-		text-align: center;
-		padding: 0;
-		margin: auto;
-		animation: right 1000ms;
-		text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
-	}
-
-	main > header {
-		margin: 17em auto 20rem;
-	}
-
-	h4 {
-		width: auto;
-	}
-}
-
 .articleContainer {
 	width: 27%;
 	margin: auto;
@@ -230,4 +150,84 @@ h4 {
 	padding: 10px 10px;
 	display: flex;
 	align-items: center;
+}
+
+.newcontainer > a:hover {
+	cursor: pointer;
+	color: orange;
+	background-color: white;
+	border: 1px solid orange;
+}
+
+.newcontainer:hover .image img {
+	filter: blur(2px);
+	transition: filter 200ms ease;
+}
+
+@keyframes right {
+	from {
+		opacity: 0;
+		transform: translateX(1000px);
+	}
+
+	to {
+		opacity: 1;
+		text-replace: translateY(0);
+	}
+}
+@keyframes left {
+	from {
+		opacity: 0;
+		transform: translateX(-1000px);
+	}
+
+	to {
+		opacity: 1;
+		text-replace: translateY(0);
+	}
+}
+
+@media (width < 1650px) {
+	.main-nav > article {
+		width: 50%;
+		margin: auto;
+	}
+}
+
+@media (width < 850px) {
+	.main-nav > article {
+		width: 90%;
+		margin: auto;
+	}
+
+	.main-nav > article > .newcontainer > figure {
+		width: 90%;
+		height: 200px;
+	}
+
+	.fromL {
+		font-size: 3rem;
+		text-align: center;
+		padding: 0;
+		margin: auto;
+		animation: left 1200ms;
+		text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+	}
+
+	.fromR {
+		font-size: 3rem;
+		text-align: center;
+		padding: 0;
+		margin: auto;
+		animation: right 1000ms;
+		text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+	}
+
+	main > header {
+		margin: 17em auto 20rem;
+	}
+
+	h4 {
+		width: auto;
+	}
 }
