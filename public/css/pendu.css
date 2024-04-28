@@ -2,8 +2,11 @@
 	font-family: Helvetica, sans-serif;
 }
 
-html,
-header {
+main {
+	margin-top: 150px;
+}
+
+html {
 	margin: 0;
 	padding: 0;
 }
