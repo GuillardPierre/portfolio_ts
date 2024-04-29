@@ -35,16 +35,25 @@ option {
 }
 
 #carteGlobale {
-	width: 800px;
+	width: 90%; /* Largeur maximale de 90% de la largeur de son conteneur parent */
+	max-width: 800px; /* Si vous voulez également définir une largeur maximale absolue */
+	min-width: 650px;
 	display: flex;
 	justify-content: center;
-}
-
-#carteGlobale {
 	border: 2px solid;
 	border-radius: 10px;
 	padding: 10px;
 	margin: 10px auto;
+}
+
+#carteGlobale svg {
+	width: 100%;
+	height: auto;
+	max-width: 100%;
+}
+
+path {
+	border: 1px solid red;
 }
 
 #zoneScore {
