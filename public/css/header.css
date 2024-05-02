@@ -23,11 +23,11 @@ body > header {
 	width: 100%;
 	z-index: 100;
 	box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
-	position: relative;
 }
 
 html {
 	scroll-behavior: smooth;
+	background-color: whitesmoke;
 }
 
 header > h2 > a {
