@@ -14,7 +14,7 @@ path:hover {
 }
 
 main {
-	margin-top: 150px;
+	margin-top: 25px;
 }
 
 #zoneAffichage,
@@ -34,22 +34,19 @@ option {
 	color: #34344a;
 }
 
+h1 {
+	font-size: 1.5rem;
+}
+
 #carteGlobale {
-	width: 90%; /* Largeur maximale de 90% de la largeur de son conteneur parent */
-	max-width: 800px; /* Si vous voulez également définir une largeur maximale absolue */
-	min-width: 650px;
+	max-width: 800px;
+	max-width: 650px;
 	display: flex;
 	justify-content: center;
 	border: 2px solid;
 	border-radius: 10px;
 	padding: 10px;
 	margin: 10px auto;
-}
-
-#carteGlobale svg {
-	width: 100%;
-	height: auto;
-	max-width: 100%;
 }
 
 path {
@@ -64,7 +61,7 @@ path {
 #questionNumero,
 #questionPrefecture {
 	display: grid;
-	grid-template-columns: repeat(3, 20%); /* Trois colonnes de largeur égale */
+	grid-template-columns: repeat(3, 30%); /* Trois colonnes de largeur égale */
 	grid-template-rows: 1fr;
 	row-gap: 10px;
 	justify-content: center; /* Centrer les colonnes horizontalement */
@@ -83,10 +80,10 @@ path {
 }
 
 #questions {
-	width: 900px;
+	max-width: 650px;
 	border: 2px solid;
 	border-radius: 10px;
-	padding: 20px;
+	padding: 10px;
 	margin: 10px auto;
 }
 

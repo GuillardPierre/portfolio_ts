@@ -19,7 +19,8 @@ footer {
 main {
 	text-align: center;
 	font-family: Arial, Helvetica, sans-serif;
-	width: 750px;
+	width: 95%;
+	max-width: 750px;
 	margin: auto;
 	margin-top: 150px;
 	background: linear-gradient(
@@ -44,6 +45,7 @@ main {
 }
 
 #choixUtilisateur img {
+	width: 35%;
 	max-width: 150px;
 	margin: 5px;
 }
@@ -61,7 +63,8 @@ main {
 }
 
 #resultat img {
-	width: 125px;
+	width: 30%;
+	max-width: 125px;
 }
 
 #score {

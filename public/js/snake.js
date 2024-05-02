@@ -11,7 +11,6 @@ const app = {
 	delayMovement: 150,
 	// Permet de bloquer l'appui de pleins de touches en même temps
 	directionLocked: false,
-	// Stocke le score mais aussi la longueur du serpent
 	snakeLength: 4,
 	score: 0,
 	allCells: null,
@@ -19,8 +18,16 @@ const app = {
 	lastPosition: null,
 	fruitLocalisation: null,
 
+	gridSize() {
+		if (window.innerWidth < 768) {
+			this.createGrid(26, 15);
+		} else {
+			this.createGrid(26, 30);
+		}
+	},
+
 	// Permet de créer la grille de jeu
-	createGrid: (GridSize = 26, PixelsSize = 15) => {
+	createGrid: (GridSize = 26, PixelsSize = 25) => {
 		for (let i = 0; i < GridSize * GridSize; i++) {
 			const cellule = document.createElement('div');
 
@@ -337,7 +344,7 @@ const app = {
 	},
 
 	init: () => {
-		app.createGrid();
+		app.gridSize();
 		app.snakePosition(`${app.position[0]}${app.position[1]}`);
 		app.initiateSnakeBody();
 		app.handleKeyDown();

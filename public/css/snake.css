@@ -18,27 +18,30 @@ main > h1 {
 	background-color: rgb(5, 87, 5);
 	width: fit-content;
 	margin: auto;
+	font-size: 3rem;
 }
 
 main {
-	margin-top: 150px;
+	margin-top: 50px;
 }
 
 #scoreZone {
 	margin-top: 25px;
 	text-align: center;
+	font-size: 1.5rem;
 }
 
 #gridZone {
+	width: 50%;
+	height: 50%;
 	display: grid;
 	height: auto;
 	width: fit-content;
 	margin: auto;
 }
 .cell {
-	width: 20px;
-	height: 20px;
-	/* border: 1px solid lightgray; */
+	width: 40px;
+	height: 40px;
 	background-color: #d2dae2;
 }
 
@@ -131,7 +134,7 @@ main {
 	grid-column: 2;
 }
 
-@media (width < 700px) {
+@media (width < 768px) {
 	.mobileCommands {
 		display: grid;
 	}
