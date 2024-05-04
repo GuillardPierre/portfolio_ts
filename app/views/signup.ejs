@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="fr">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link
+			rel="stylesheet"
+			href="https://cdn.jsdelivr.net/npm/bulma@1.0.0/css/bulma.min.css" />
+		<title>Inscription</title>
+		<link rel="stylesheet" href="/css/header.css" />
+		<script src="/js/login.js" defer></script>
+	</head>
+	<body>
+		<%- include('partials/header.ejs') %>
+	</body>
+	<main style="margin-top: 100px">
+		<!-- -------------------------------------Formulaire Inscription------------------------------- -->
+		<div class="main__signup columns">
+			<div class="container column is-two-thirds">
+				<div class="box has-background-warning">
+					<h3 class="title is-4">Inscription</h3>
+					<form action="" method="POST">
+						<div class="columns">
+							<div class="field column is-two-thirds container">
+								<label class="label has-text-grey-darker"
+									>Pseudo
+									<div class="control">
+										<input
+											class="input"
+											type="text"
+											name="name"
+											placeholder="Pseudo" /></div
+								></label>
+							</div>
+						</div>
+						<div class="columns">
+							<div class="field column is-two-thirds container">
+								<label class="label has-text-grey-darker"
+									>Mot de passe
+									<div class="control is-half">
+										<input
+											class="input"
+											type="password"
+											name="password"
+											placeholder="********" /></div
+								></label>
+							</div>
+						</div>
+						<div class="columns">
+							<div class="field column is-two-thirds container">
+								<label class="label has-text-grey-darker"
+									>Confirmation mot de passe
+									<div class="control is-half">
+										<input
+											class="input"
+											type="password"
+											name="password__confirmation"
+											placeholder="********" /></div
+								></label>
+							</div>
+						</div>
+						<div class="column is-half container">
+							<button class="main__signup--btn button is-primary">
+								Inscription
+							</button>
+                        </form>
+                        <button class="main__signup--btnAlreadyAccount button is-info">
+                            J'ai déjà un compte
+                        </button>
+                    </div>
+				</div>
+			</div>
+		</div>
+		<!-- -------------------------------------Formulaire connexion------------------------------- -->
+		<div class="main__login columns">
+			<div class="container column is-two-thirds">
+				<div class="box has-background-warning">
+					<h3 class="title is-4">Connexion</h3>
+					<form>
+						<div class="columns">
+							<div class="field column is-two-thirds container">
+								<label class="label has-text-grey-darker"
+									>Pseudo
+									<div class="control">
+										<input
+											class="input"
+											type="text"
+											name="name"
+											placeholder="Pseudo" />
+									</div>
+								</label>
+							</div>
+						</div>
+						<div class="columns">
+							<div class="field column is-two-thirds container">
+								<label class="label has-text-grey-darker"
+									>Mot de passe
+									<div class="control is-half">
+										<input
+											class="input"
+											type="password"
+											name="password"
+											placeholder="********" />
+									</div>
+								</label>
+							</div>
+						</div>
+						<div class="column is-half container">
+							<button class="main__login--btn button is-primary">
+								Inscription
+							</button>
+                        </form>
+                        <button class="main__login--btnNoAccount button is-info">
+                            Je n'ai pas de compte
+                        </button>
+                    </div>
+				</div>
+			</div>
+		</div>
+	</main>
+</html>
