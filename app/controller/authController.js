@@ -8,8 +8,6 @@ const authcontroller = {
 	},
 
 	async signup(req, res) {
-		console.log(req.body);
-
 		const schema = z.object({
 			name: z.string().min(2, { message: 'le nom est trop court' }),
 			password: z
@@ -52,6 +50,35 @@ const authcontroller = {
 
 		console.log(user);
 		res.status(201).send('Utilisateur créé');
+	},
+
+	async login(req, res) {
+		console.log('test');
+		const userIsExist = await User.findOne({ name: req.body.name });
+		console.log(userIsExist);
+
+		if (!userIsExist) {
+			res.status(401).send('Mauvais identifiants');
+			return;
+		}
+
+		const passwordIsValid = await bcrypt.compare(
+			req.body.password,
+			userIsExist.password
+		);
+
+		if (!passwordIsValid) {
+			res.status(401).send('Mauvais identifiants');
+			return;
+		}
+		req.session.userId = userIsExist.name;
+		console.log(req.session);
+		res.status(200).send('Utilisateur connecté !');
+	},
+
+	logout(req, res) {
+		req.session.destroy();
+		res.redirect('/');
 	},
 };
 
