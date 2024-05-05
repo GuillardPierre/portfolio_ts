@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Compte</title>
+		<link
+			rel="stylesheet"
+			href="https://cdn.jsdelivr.net/npm/bulma@1.0.0/css/bulma.min.css" />
+		<link rel="stylesheet" href="/css/header.css" />
+		<script src="/js/account.js" defer></script>
+	</head>
+	<body>
+		<%- include('partials/header.ejs') %>
+
+		<main style="margin-top: 100px">
+			<% if (locals.user) { %>
+			<div class="main__signup columns">
+				<div class="container column is-two-thirds">
+					<div class="box has-background-success has-text-white">
+						<h3 class="title is-4">Bienvenue <%- user.name %></h3>
+						<p text>Merci d'avoir créé un compte !</p>
+						<p>
+							Tu peux maintenant accéder au projet Chat
+							<a href="/project/chat">ici</a>
+						</p>
+						<button class="deconnexion--btn mt-2 button is-danger">
+							<a href="/deconnexion" class="has-text-white">Me déconnecter</a>
+						</button>
+					</div>
+				</div>
+			</div>
+			<% } %>
+		</main>
+	</body>
+</html>
