@@ -4,7 +4,11 @@
 	</figure>
 	<h2><a href="#sectionPortfolio">Portfolio</a></h2>
 	<nav class="header__nav">
+		<% if (locals.user) { %>
+		<a class="header__nav--link" href="/account"><%- user.name %></a>
+		<% } else { %>
 		<a class="header__nav--link" href="/signup">Compte</a>
+		<% } %>
 		<a class="header__nav--link" href="#section__footer">Contact</a>
 	</nav>
 </header>

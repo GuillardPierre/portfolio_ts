@@ -5,56 +5,76 @@ const app = {
 		document.querySelector('.main__login').classList.toggle('is-hidden');
 	},
 
-	signup() {
+	async signup() {
 		const signupBtn = document
 			.querySelector('.main__signup--btn')
 			.closest('form');
-		console.log(signupBtn);
-		signupBtn.addEventListener('submit', (event) => {
+		signupBtn.addEventListener('submit', async (event) => {
 			event.preventDefault();
 			const formData = new FormData(event.target);
-			apiCall.newUser(formData);
-			console.log(JSON.stringify(Object.fromEntries(formData)));
+			const rep = await apiCall.newUser(formData);
+			if (rep.statusCode === 201) {
+				app.hideOrShowNotification();
+				document.querySelector('.notification p').textContent = rep.message;
+				app.changeTheForm;
+			} else {
+				app.hideOrShowNotification();
+				document.querySelector('.notification p').textContent = rep.message;
+			}
 		});
 		document
 			.querySelector('.main__signup--btnAlreadyAccount')
 			.addEventListener('click', (event) => {
 				event.preventDefault();
-				const signupForm = event.target.closest('.main__signup');
-				signupForm.classList.toggle('is-hidden');
-				document.querySelector('.main__login').classList.toggle('is-hidden');
+				app.changeTheForm();
 			});
 	},
 
-	login() {
+	async login() {
 		const loginBtn = document
 			.querySelector('.main__login--btn')
 			.closest('form');
-		console.log(loginBtn);
-		loginBtn.addEventListener('submit', (event) => {
+		loginBtn.addEventListener('submit', async (event) => {
 			event.preventDefault();
 			const formData = new FormData(event.target);
-			apiCall.connectUser(formData);
-			console.log(JSON.stringify(Object.fromEntries(formData)));
+			const rep = await apiCall.connectUser(formData);
+			console.log(rep);
+			if (rep.statusCode === 200) {
+				document.location.href = '/';
+			} else {
+				app.hideOrShowNotification();
+				document.querySelector('.notification p').textContent = rep.message;
+			}
 		});
 		document
 			.querySelector('.main__login--btnNoAccount')
 			.addEventListener('click', (event) => {
 				event.preventDefault();
-				const loginForm = event.target.closest('.main__login');
-				loginForm.classList.toggle('is-hidden');
-				document.querySelector('.main__signup').classList.toggle('is-hidden');
+				app.changeTheForm();
 			});
+	},
+
+	changeTheForm() {
+		document.querySelector('.main__signup').classList.toggle('is-hidden');
+		document.querySelector('.main__login').classList.toggle('is-hidden');
+	},
+
+	hideOrShowNotification() {
+		document.querySelector('.notification').classList.toggle('is-hidden');
 	},
 };
 
 const apiCall = {
 	async newUser(formData) {
 		try {
-			const rep = await fetch(`http://pierrofeu.alwaysdata.net/api/user`, {
-				method: 'POST',
-				body: formData,
-			});
+			const rep = await fetch(
+				// `http://pierrofeu.alwaysdata.net/api/user` ||
+				'http://localhost:3000/api/signup',
+				{
+					method: 'POST',
+					body: formData,
+				}
+			);
 			const json = await rep.json();
 			if (!rep.ok) {
 				throw json;
@@ -62,24 +82,29 @@ const apiCall = {
 			return json;
 		} catch (error) {
 			console.log(error);
-			return null;
+			return error;
 		}
 	},
 
 	async connectUser(formData) {
 		try {
-			const rep = await fetch(`http://pierrofeu.alwaysdata.net/api/user`, {
-				method: 'GET',
-				body: formData,
-			});
+			const rep = await fetch(
+				// `http://pierrofeu.alwaysdata.net/api/user` ||
+				'http://localhost:3000/api/login',
+				{
+					method: 'POST',
+					body: formData,
+				}
+			);
 			const json = await rep.json();
 			if (!rep.ok) {
 				throw json;
 			}
+			console.log(json);
 			return json;
 		} catch (error) {
 			console.log(error);
-			return null;
+			return error;
 		}
 	},
 };

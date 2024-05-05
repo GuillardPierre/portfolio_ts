@@ -9,17 +9,17 @@ const authcontroller = {
 
 	async signup(req, res) {
 		const schema = z.object({
-			name: z.string().min(2, { message: 'le nom est trop court' }),
-			password: z
-				.string()
-				.min(2, { message: 'le mot de passe est trop court' }),
-			password__confirmation: z.string().min(2),
+			name: z.string().min(2),
+			password: z.string().min(3),
+			password__confirmation: z.string(),
 		});
 
 		const validationBody = schema.safeParse(req.body);
 
 		if (!validationBody.success) {
-			res.status(400).send(validationBody.error);
+			res
+				.status(400)
+				.json({ statusCode: 400, message: 'Mot de passe trop court' });
 			return;
 		}
 
@@ -27,7 +27,10 @@ const authcontroller = {
 			validationBody.data.password !==
 			validationBody.data.password__confirmation
 		) {
-			res.status(400).send('Les mots de passe ne correspondent pas');
+			res.status(400).json({
+				status: 400,
+				message: 'Les mots de passe ne correspondent pas',
+			});
 			return;
 		}
 
@@ -36,7 +39,7 @@ const authcontroller = {
 		});
 
 		if (userWithSameName) {
-			res.status(400).send('Pseudo déjà pris');
+			res.status(400).json({ message: 'Pseudo déjà pris' });
 			return;
 		}
 
@@ -49,7 +52,7 @@ const authcontroller = {
 		});
 
 		console.log(user);
-		res.status(201).send('Utilisateur créé');
+		res.status(201).json({ statusCode: 201, message: 'Compte créé' });
 	},
 
 	async login(req, res) {
@@ -58,7 +61,9 @@ const authcontroller = {
 		console.log(userIsExist);
 
 		if (!userIsExist) {
-			res.status(401).send('Mauvais identifiants');
+			res
+				.status(401)
+				.json({ statusCode: 401, message: 'Mauvais identifiants' });
 			return;
 		}
 
@@ -68,17 +73,25 @@ const authcontroller = {
 		);
 
 		if (!passwordIsValid) {
-			res.status(401).send('Mauvais identifiants');
+			res
+				.status(401)
+				.json({ statusCode: 401, message: 'Mauvais identifiants' });
 			return;
 		}
-		req.session.userId = userIsExist.name;
+		req.session.userId = userIsExist.id;
 		console.log(req.session);
-		res.status(200).send('Utilisateur connecté !');
+		res
+			.status(200)
+			.json({ statusCode: 200, message: 'Utilisateur connecté !' });
 	},
 
 	logout(req, res) {
 		req.session.destroy();
 		res.redirect('/');
+	},
+
+	showAccount(req, res) {
+		res.render('account');
 	},
 };
 

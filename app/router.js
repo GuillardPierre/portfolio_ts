@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const mongooseConnection = require('./middlewares/handleMongoDb');
+const loadUser = require('./middlewares/loadUser');
 
 const homeController = require('./controller/homeController');
 const projectController = require('./controller/projectController');
@@ -9,11 +10,16 @@ const authcontroller = require('./controller/authController');
 const { catchErrors, errorHandler } = require('./middlewares/tryCatch');
 
 router.use(mongooseConnection.mgConnect);
+router.use(loadUser);
+
 router.get('/', homeController.index);
 
 router.get('/signup', authcontroller.signupPage);
 router.post('/api/signup', catchErrors(authcontroller.signup));
 router.post('/api/login', catchErrors(authcontroller.login));
+router.get('/deconnexion', authcontroller.logout);
+
+router.get('/account', authcontroller.showAccount);
 
 router.get('/project/snake', projectController.snake);
 router.get('/project/meteoApi', projectController.meteo);

@@ -12,10 +12,17 @@
 	</head>
 	<body>
 		<%- include('partials/header.ejs') %>
-	</body>
+	
 	<main style="margin-top: 100px">
+
+		<div class="columns">
+			<div class="notification column is-half is-hidden is-link is-light container">
+				<button class="delete" onclick="app.hideOrShowNotification()"></button>
+				<p>L'utilisateur a bien été créé</p>
+			</div>
+		</div>
 		<!-- -------------------------------------Formulaire Inscription------------------------------- -->
-		<div class="main__signup columns">
+		<div class="main__signup form columns">
 			<div class="container column is-two-thirds">
 				<div class="box has-background-warning">
 					<h3 class="title is-4">Inscription</h3>
@@ -72,7 +79,7 @@
 			</div>
 		</div>
 		<!-- -------------------------------------Formulaire connexion------------------------------- -->
-		<div class="main__login columns">
+		<div class="main__login form columns">
 			<div class="container column is-two-thirds">
 				<div class="box has-background-warning">
 					<h3 class="title is-4">Connexion</h3>
@@ -107,7 +114,7 @@
 						</div>
 						<div class="column is-half container">
 							<button class="main__login--btn button is-primary">
-								Inscription
+								Connexion
 							</button>
                         </form>
                         <button class="main__login--btnNoAccount button is-info">
@@ -118,4 +125,5 @@
 			</div>
 		</div>
 	</main>
+</body>
 </html>
