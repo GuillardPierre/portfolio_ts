@@ -20,12 +20,14 @@ const mutipartParser = multer();
 // On utlise .none() pour dire qu'on attend pas de fichier, uniquement des inputs "classiques" !
 app.use(mutipartParser.none());
 
+app.use(express.json());
+
 app.use(
 	session({
 		secret: process.env.SESSION_SECRET,
 		resave: true,
 		saveUninitialized: true,
-		cookie: { secure: false, maxAge: 60000 },
+		cookie: { secure: false },
 	})
 );
 

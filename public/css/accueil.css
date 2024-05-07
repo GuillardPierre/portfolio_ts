@@ -23,7 +23,7 @@ main > header {
 .fromR {
 	font-size: clamp(0.5rem, 2vw + 2rem, 12rem);
 	text-align: center;
-	padding-right: 50px;
+	padding-right: 0;
 	margin: 0;
 	animation: right 1000ms;
 	text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
@@ -343,7 +343,7 @@ footer {
 .footer__contact > figure {
 	transition: all 300ms;
 	min-width: 30px;
-	height: 70px;
+	height: 50px;
 }
 
 .footer__contact > figure > a {

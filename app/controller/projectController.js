@@ -22,6 +22,10 @@ const projectController = {
 	pfc(req, res) {
 		res.render('PFC');
 	},
+
+	chat(req, res) {
+		res.render('chat');
+	},
 };
 
 module.exports = projectController;

@@ -6,6 +6,7 @@ const loadUser = require('./middlewares/loadUser');
 const homeController = require('./controller/homeController');
 const projectController = require('./controller/projectController');
 const authcontroller = require('./controller/authController');
+const messageController = require('./controller/messageController');
 
 const { catchErrors, errorHandler } = require('./middlewares/tryCatch');
 
@@ -27,12 +28,11 @@ router.get('/project/pokemonApi', projectController.pokemon);
 router.get('/project/departementKing', projectController.department);
 router.get('/project/pendu', projectController.pendu);
 router.get('/project/pierreFeuilleCiseaux', projectController.pfc);
-// ! A ajouter après la connexion.
-// router.get(
-// 	'/project/chat',
-// 	mongooseConnection.mgConnect,
-// 	projectController.chat
-// );
+
+router.get('/project/chat', projectController.chat);
+router.post('/api/message', catchErrors(messageController.save));
+// ! Ajouter un mw de vérification d'utilisateur connecté en session.
+router.get('/api/message', catchErrors(messageController.display));
 
 router.use(errorHandler);
 
