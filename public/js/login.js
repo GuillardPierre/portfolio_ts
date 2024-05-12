@@ -40,7 +40,8 @@ const app = {
 			const rep = await apiCall.connectUser(formData);
 			console.log(rep);
 			if (rep.statusCode === 200) {
-				document.location.href = '/';
+				// document.location.href = '/';
+				document.querySelector('.notification p').textContent = rep.message;
 			} else {
 				app.hideOrShowNotification();
 				document.querySelector('.notification p').textContent = rep.message;

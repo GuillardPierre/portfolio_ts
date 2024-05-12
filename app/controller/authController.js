@@ -81,8 +81,8 @@ const authcontroller = {
 		req.session.userId = userIsExist.id;
 		console.log(req.session);
 		res
-			.status(200)
-			.json({ statusCode: 200, message: 'Utilisateur connecté !' });
+			 .status(200)
+			 .json({ statusCode: 200, message: 'Utilisateur connecté !' });
 	},
 
 	logout(req, res) {

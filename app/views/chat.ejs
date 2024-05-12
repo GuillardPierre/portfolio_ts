@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Chat quasi-instantanné </title>
+    <link rel="stylesheet" href="/css/chat.css">
+    <link rel="stylesheet" href="/css/header.css">
+    <link rel="shortcut icon" href="/images/fusee.png" type="image/x-icon" />
+    <script src="/js/chat.js"></script>
+
+</head>
+<body>
+    <%- include('partials/header') %>
+    <main>
+        <template id="message">
+            <div class="yourMessage" data-id="">
+                <div class="author" slot="author">Pierre</div>
+                <div class="textContent" slot="content">Bienvenue sur mon chat</div>
+            </div> 
+        </template>
+
+
+        <template id="otherMessage">
+            <div class="otherMessage" data-id="">
+                <div class="author" slot="author">Paul</div>
+                <div class="textContent" slot="content">Soyez sages !</div>
+            </div>
+        </template>
+            
+        </div>
+
+
+
+        <div class="inputZone">
+            <input
+              type="text"
+              id="message"
+              name="message"
+              placeholder="Tapez votre message"
+            />
+            <button class="sendMessage"><img src="/images/send.png" alt="boutton envoyer message" id="btnEnvoyerMessage" /></button>
+            
+          </div>
+    </main>
+
+</body>
+</html>

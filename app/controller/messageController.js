@@ -53,6 +53,21 @@ const messageController = {
 			return;
 		}
 
+		if (req.session.userId) {
+			const { userId } = req.session;
+			const user = await User.findById(userId);
+		
+			if (!user) {
+				res
+					.status(400)
+					.json({ message: "erreur lors de la récupération de l'utilisateur" });
+				return;
+			}		
+				console.log(user, req.body);
+				// TODO ajouter le username au tableau
+			const newMessagesArray = allMessages.map(mess => )
+		}
+
 		res.status(200).json({ allMessages });
 	},
 
@@ -76,7 +91,17 @@ const messageController = {
 
 		if (req.body.messageId) {
 			const message = await Message.deleteOne(req.body.messageId);
+			console.log(message);
+			res.status(200).json({message: "message supprimé"})
 		}
+
+		if (req.body.userId) {
+			const allMessages = await Message.deleteMany({user_id: req.body.userId})
+			console.log(allMessages);
+			res.status(200).json({message: "messages supprimé"})
+		}
+
+		return;
 	},
 };
 
