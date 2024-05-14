@@ -4,10 +4,14 @@ const mongooseConnection = {
 	async mgConnect(req, res, next) {
 		try {
 			const mgConnected = await mongoose.connect(`${process.env.MONGODB}`);
-			console.log(mgConnected.connection.readyState);
-			next();		
+			console.log('Mongo connecté');
+			next();
 		} catch (error) {
-			console.log("ERREUR MW MONGOOSE", error, mgConnected.connection.readyState)
+			console.log(
+				'ERREUR MW MONGOOSE',
+				error,
+				mgConnected.connection.readyState
+			);
 			next();
 		}
 	},

@@ -4,12 +4,9 @@ async function loadUser(req, res, next) {
 	try {
 		console.log('test');
 		if (req.session.userId) {
-			// A partir de l'id de l'utilisateur stocker en session.
-			// Je vais chercher l'utilisateur en base de données
 			const user = await User.findById(req.session.userId);
 			console.log(user);
 			if (user) {
-				// Et le stocker dans req.user et res.locals.user
 				req.user = user;
 				res.locals.user = user;
 				console.log('utilisateur connecté');

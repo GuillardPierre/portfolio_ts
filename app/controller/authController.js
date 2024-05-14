@@ -7,6 +7,10 @@ const authcontroller = {
 		res.render('signup');
 	},
 
+	showAccount(req, res) {
+		res.render('account');
+	},
+
 	async signup(req, res) {
 		const schema = z.object({
 			name: z.string().min(2),
@@ -56,7 +60,6 @@ const authcontroller = {
 	},
 
 	async login(req, res) {
-		console.log('test');
 		const userIsExist = await User.findOne({ name: req.body.name });
 		console.log(userIsExist);
 
@@ -81,8 +84,8 @@ const authcontroller = {
 		req.session.userId = userIsExist.id;
 		console.log(req.session);
 		res
-			 .status(200)
-			 .json({ statusCode: 200, message: 'Utilisateur connecté !' });
+			.status(200)
+			.json({ statusCode: 200, message: 'Utilisateur connecté !' });
 	},
 
 	logout(req, res) {
@@ -90,8 +93,23 @@ const authcontroller = {
 		res.redirect('/');
 	},
 
-	showAccount(req, res) {
-		res.render('account');
+	async accountInformation(req, res) {
+		if (req.session.userId) {
+			const user = await User.findById(req.session.userId);
+			if (!user) {
+				res.status(404).json({
+					statusCode: 404,
+					message: "erreur lors de la récupération de l'utilisateur",
+				});
+				return;
+			}
+
+			res.status(200).json({ statusCode: 200, user: user.name });
+		} else {
+			res
+				.status(401)
+				.json({ statusCode: 401, message: 'Pas de session en cours' });
+		}
 	},
 };
 

@@ -9,9 +9,10 @@ const authcontroller = require('./controller/authController');
 const messageController = require('./controller/messageController');
 
 const { catchErrors, errorHandler } = require('./middlewares/tryCatch');
+const { castObject } = require('./models/mongoDb/Message');
 
-router.use(mongooseConnection.mgConnect);
 router.use(loadUser);
+router.use(mongooseConnection.mgConnect);
 
 router.get('/', homeController.index);
 
@@ -19,6 +20,7 @@ router.get('/signup', authcontroller.signupPage);
 router.post('/api/signup', catchErrors(authcontroller.signup));
 router.post('/api/login', catchErrors(authcontroller.login));
 router.get('/deconnexion', authcontroller.logout);
+router.get('/getUser', catchErrors(authcontroller.accountInformation));
 
 router.get('/account', authcontroller.showAccount);
 

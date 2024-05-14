@@ -2,8 +2,9 @@ const mongoose = require('mongoose');
 
 const messageSchema = new mongoose.Schema({
 	content: { type: String, required: true },
-	user_id: {
-		type: mongoose.Schema.Types.ObjectId,
+	user_name: {
+		// type: mongoose.Schema.Types.ObjectId,
+		type: mongoose.Schema.Types.String,
 		ref: 'User',
 		required: true,
 	},

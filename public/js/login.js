@@ -14,11 +14,23 @@ const app = {
 			const formData = new FormData(event.target);
 			const rep = await apiCall.newUser(formData);
 			if (rep.statusCode === 201) {
-				app.hideOrShowNotification();
+				if (
+					document
+						.querySelector('.notification')
+						.classList.contains('is-hidden')
+				) {
+					app.hideOrShowNotification();
+				}
 				document.querySelector('.notification p').textContent = rep.message;
 				app.changeTheForm;
 			} else {
-				app.hideOrShowNotification();
+				if (
+					document
+						.querySelector('.notification')
+						.classList.contains('is-hidden')
+				) {
+					app.hideOrShowNotification();
+				}
 				document.querySelector('.notification p').textContent = rep.message;
 			}
 		});
@@ -40,10 +52,19 @@ const app = {
 			const rep = await apiCall.connectUser(formData);
 			console.log(rep);
 			if (rep.statusCode === 200) {
-				// document.location.href = '/';
-				document.querySelector('.notification p').textContent = rep.message;
+				setTimeout(() => {
+					document.location.href = '/';
+				}, 3000);
+				document.querySelector('.notification p').textContent =
+					rep.message + 'redirection...';
 			} else {
-				app.hideOrShowNotification();
+				if (
+					document
+						.querySelector('.notification')
+						.classList.contains('is-hidden')
+				) {
+					app.hideOrShowNotification();
+				}
 				document.querySelector('.notification p').textContent = rep.message;
 			}
 		});
@@ -69,8 +90,8 @@ const apiCall = {
 	async newUser(formData) {
 		try {
 			const rep = await fetch(
-				`https://pierrofeu.alwaysdata.net/api/signup`,
-				// 'http://localhost:3000/api/signup',
+				// `https://pierrofeu.alwaysdata.net/api/signup`,
+				'http://localhost:3000/api/signup',
 				{
 					method: 'POST',
 					body: formData,
@@ -90,8 +111,8 @@ const apiCall = {
 	async connectUser(formData) {
 		try {
 			const rep = await fetch(
-				`https://pierrofeu.alwaysdata.net/api/login`,
-				// 'http://localhost:3000/api/login',
+				// `https://pierrofeu.alwaysdata.net/api/login`,
+				'http://localhost:3000/api/login',
 				{
 					method: 'POST',
 					body: formData,
