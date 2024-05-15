@@ -12,34 +12,48 @@
 	<body>
 		<%- include('partials/header') %>
 		<main>
-			<div class="messagesFeed"></div>
-			<div class="inputZone">
+			<div class="messagesFeed">
+				<div class="message otherMessage" data-id="">
+					<div class="author" slot="author">
+						<strong>Pierre Guillard :</strong>
+					</div>
+					<div class="textContent" slot="content">
+						Vous voici sur mon projet de chat, n'hésitez pas à poster un message
+						pour marquer votre passage :) Les messages ne sont pas encore
+						instantanés mais j'y travaille !
+					</div>
+				</div>
+			</div>
+			<% if (locals.user) { %>
+			<form class="inputZone" method="post" action="">
 				<input
 					type="text"
-					id="inputMessage"
-					name="message"
+					id="content"
+					name="content"
+					autocomplete="off"
 					placeholder="Tapez votre message" />
-				<button class="sendMessage">
+				<button class="sendMessage" type="submit">
 					<img
 						src="/images/send.png"
 						alt="icone envoyer message"
 						id="btnEnvoyerMessage" />
 				</button>
+			</form>
+			<% } else { %>
+			<div class="info">
+				<p style="text-align: center">
+					Si tu veux envoyer un message dans le chat, tu dois d'abord te créer
+					un compte.
+				</p>
 			</div>
+			<% } %>
 		</main>
 
 		<template id="message">
 			<div class="message" data-id="">
-				<div class="author" slot="author">Pierre</div>
+				<div class="author" slot="author"><strong></strong></div>
 				<div class="textContent" slot="content">Bienvenue sur mon chat</div>
 			</div>
 		</template>
-
-		<!-- <template id="otherMessage">
-			<div class="otherMessage" data-id="">
-				<div class="author" slot="author">Paul</div>
-				<div class="textContent" slot="content">Soyez sages !</div>
-			</div>
-		</template> -->
 	</body>
 </html>

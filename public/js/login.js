@@ -54,9 +54,16 @@ const app = {
 			if (rep.statusCode === 200) {
 				setTimeout(() => {
 					document.location.href = '/';
-				}, 3000);
+				}, 2000);
+				if (
+					document
+						.querySelector('.notification')
+						.classList.contains('is-hidden')
+				) {
+					app.hideOrShowNotification();
+				}
 				document.querySelector('.notification p').textContent =
-					rep.message + 'redirection...';
+					rep.message + ' Redirection...';
 			} else {
 				if (
 					document

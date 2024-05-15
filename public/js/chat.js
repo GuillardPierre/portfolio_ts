@@ -1,42 +1,72 @@
 const app = {
 	user: null,
 	messagesZone: document.querySelector('.messagesFeed'),
-	inputZone: document.querySelector('.inputZone'),
+	formZone: document.querySelector('.inputZone'),
 	btnSendMessage: document.querySelector('.sendMessage'),
 
 	otherMessageClone: document.querySelector('#otherMessage'),
 
 	async init() {
-		app.btnSendMessage.addEventListener('click', API.sendMessageToAPI);
+		console.log(app.formZone, app.btnSendMessage);
+		if (document.querySelector('.inputZone')) {
+			app.formZone.addEventListener('submit', app.sendMessage);
+		}
+		await app.getAllMessages();
+		console.log(app.user);
+	},
+
+	async getAllMessages() {
 		const messages = await API.getAllMessagesAPI();
 		app.user = await API.getUser();
-		console.log(messages.allMessages, app.user);
+		console.log(messages, app.user);
 		// TODO => Gestion si le status code renvoyé par user est 401 ou 200
 		messages.allMessages.forEach((message) => {
-			if (message.user_name === app.user) {
-				app.makeMessageInDom(message, 'yourMessage');
+			console.log(message);
+			if (!app.user) {
+				app.displayMessageInDom(message, 'otherMessage');
+			} else if (message.user_name === app.user.user) {
+				app.displayMessageInDom(message, 'yourMessage');
 			} else {
-				app.makeMessageInDom(message, 'otherMessage');
+				app.displayMessageInDom(message, 'otherMessage');
 			}
+			app.messagesZone.scrollTop = app.messagesZone.scrollHeight;
 		});
 	},
 
-	refreshMessages() {},
-
-	makeMessageInDom(json, position) {
+	displayMessageInDom(json, position) {
+		console.log(json);
 		const messageTemplate = document.querySelector('#message');
-		console.log(messageTemplate);
-		const yourMessageClone = document.importNode(messageTemplate.content, true);
-		console.log(yourMessageClone);
+		const messageClone = document.importNode(messageTemplate.content, true);
 		if (position === 'yourMessage') {
-			yourMessageClone.querySelector('.message').classList.add('yourMessage');
+			messageClone.querySelector('.message').classList.add('yourMessage');
+			messageClone.querySelector('.message').style.backgroundColor = '#FFA500';
 		} else {
-			yourMessageClone.querySelector('.message').classList.add('otherMessage');
+			messageClone.querySelector('.message').classList.add('otherMessage');
+			messageClone.querySelector('.message').style.backgroundColor = '#DACDF1';
 		}
-		yourMessageClone.querySelector('[slot="author"]').content = json.user_name;
-		yourMessageClone.querySelector('[slot="content"]').content = json.content;
-		console.log(app.messagesZone);
-		app.messagesZone.append(yourMessageClone);
+		const strong = document.createElement('strong');
+		strong.textContent = `${json.user_name}:`;
+		console.log(strong);
+		messageClone.querySelector('.author').append(strong);
+		messageClone.querySelector('.textContent').textContent = json.content;
+		console.log(messageClone);
+		app.messagesZone.append(messageClone);
+	},
+
+	async sendMessage(evt) {
+		evt.preventDefault();
+		console.log(evt.target);
+		const formData = new FormData(evt.target);
+		console.log(JSON.stringify(Object.fromEntries(formData.entries())));
+		const rep = await API.sendMessageToAPI(formData);
+		console.log(rep);
+		if (rep.statusCode === 201) {
+			const json = JSON.stringify(Object.fromEntries(formData.entries()));
+			const object = await JSON.parse(json);
+			object.user_name = app.user.user;
+			app.displayMessageInDom(object, 'yourMessage');
+			app.messagesZone.scrollTop = app.messagesZone.scrollHeight;
+		}
 	},
 };
 
@@ -58,22 +88,27 @@ const API = {
 		}
 	},
 
-	async sendMessageToAPI(json) {
+	async sendMessageToAPI(formData) {
 		try {
 			const rep = await fetch(
 				// `https://pierrofeu.alwaysdata.net/api/message`,
 				'http://localhost:3000/api/message',
 				{
 					method: 'POST',
-					headers: {
-						'Content-Type': 'application/json',
-					},
-					body: json,
+					// headers: {
+					// 	'Content-Type': 'application/json',
+					// },
+					body: formData,
 				}
 			);
+			const json = await rep.json();
+			if (!rep.ok) {
+				throw json;
+			}
+			return json;
 		} catch (error) {
 			console.log(error);
-			return error;
+			return null;
 		}
 	},
 
@@ -84,7 +119,6 @@ const API = {
 				'http://localhost:3000/getUser'
 			);
 			const json = await rep.json();
-			console.log(rep);
 			if (!rep.ok) {
 				throw json;
 			}

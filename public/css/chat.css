@@ -1,6 +1,6 @@
 main {
 	width: 80%;
-
+	max-width: 1050px;
 	background-color: orange;
 	border-radius: 10px;
 	margin: auto;
@@ -21,7 +21,9 @@ main {
 
 .messagesFeed {
 	width: 95%;
-	height: calc(100vh - 230px);
+	max-width: 1000px;
+	max-height: calc(100vh - 230px);
+	height: fit-content;
 	display: flex;
 	flex-direction: column;
 	border-radius: 10px;
@@ -33,7 +35,8 @@ main {
 
 .yourMessage {
 	align-self: flex-end;
-	width: 250px;
+	min-width: 250px;
+	max-width: 400px;
 	background-color: grey;
 	margin: 2px;
 	padding: 10px;
@@ -41,8 +44,8 @@ main {
 }
 
 .otherMessage {
-	padding-right: 350px;
-	width: 250px;
+	min-width: 250px;
+	max-width: 400px;
 	background-color: grey;
 	margin: 2px;
 	padding: 10px;

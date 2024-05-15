@@ -102,6 +102,7 @@ body {
 
 	.header__nav {
 		width: 30%;
+		flex-basis: content;
 	}
 
 	.header__nav > a {

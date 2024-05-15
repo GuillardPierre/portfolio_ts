@@ -34,7 +34,7 @@ const messageController = {
 
 		const newMessage = await Message.create({
 			content: validationBody.data.content,
-			user_id: user.name,
+			user_name: user.name,
 		});
 
 		console.log(newMessage);
