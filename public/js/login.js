@@ -50,7 +50,6 @@ const app = {
 			event.preventDefault();
 			const formData = new FormData(event.target);
 			const rep = await apiCall.connectUser(formData);
-			console.log(rep);
 			if (rep.statusCode === 200) {
 				setTimeout(() => {
 					document.location.href = '/';

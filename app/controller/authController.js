@@ -48,20 +48,17 @@ const authcontroller = {
 		}
 
 		const hashedPassword = await bcrypt.hash(validationBody.data.password, 10);
-		console.log(hashedPassword);
 
 		const user = await User.create({
 			name: validationBody.data.name,
 			password: hashedPassword,
 		});
 
-		console.log(user);
 		res.status(201).json({ statusCode: 201, message: 'Compte créé' });
 	},
 
 	async login(req, res) {
 		const userIsExist = await User.findOne({ name: req.body.name });
-		console.log(userIsExist);
 
 		if (!userIsExist) {
 			res
@@ -82,7 +79,6 @@ const authcontroller = {
 			return;
 		}
 		req.session.userId = userIsExist.id;
-		console.log(req.session);
 		res
 			.status(200)
 			.json({ statusCode: 200, message: 'Utilisateur connecté !' });

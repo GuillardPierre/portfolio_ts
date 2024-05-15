@@ -15,8 +15,6 @@ const messageController = {
 			return;
 		}
 
-		console.log(user, req.body);
-
 		const schema = z.object({
 			content: z.string(),
 		});
@@ -36,8 +34,6 @@ const messageController = {
 			content: validationBody.data.content,
 			user_name: user.name,
 		});
-
-		console.log(newMessage);
 
 		res.status(201).json({ statusCode: 201, message: 'message enregistré' });
 		return;
@@ -76,7 +72,6 @@ const messageController = {
 
 		if (req.body.messageId) {
 			const message = await Message.deleteOne(req.body.messageId);
-			console.log(message);
 			res.status(200).json({ message: 'message supprimé' });
 		}
 
@@ -84,7 +79,6 @@ const messageController = {
 			const allMessages = await Message.deleteMany({
 				user_id: req.body.userId,
 			});
-			console.log(allMessages);
 			res.status(200).json({ message: 'messages supprimé' });
 		}
 

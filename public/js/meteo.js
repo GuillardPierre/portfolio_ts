@@ -31,7 +31,6 @@ function fetchResult(url) {
 			if (!result.ok) {
 				throw new Error(`Erreur HTTP! Statut : ${result.status}`);
 			}
-			console.log(result);
 			return result.json();
 		})
 		.catch((err) => {
@@ -61,7 +60,6 @@ btnSubmit.addEventListener('click', () => {
 	let url1 = `${url[0]}${inputZone.value}${url[1]}`;
 	villeCherchee = inputZone.value;
 	fetchResult(url1).then((result) => {
-		console.log(result);
 		if (result.length === 0) {
 			messageErreur.style.display = 'block';
 			inputZone.value = '';
@@ -74,7 +72,6 @@ btnSubmit.addEventListener('click', () => {
 		lon = result[0].lon;
 		let url2 = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=8625c99bafcf31e818141fd601069d02&lang=fr&units=metric`;
 		fetchResult(url2).then((result) => {
-			console.log(result);
 			majAffichage(result);
 			inputZone.value = '';
 		});
