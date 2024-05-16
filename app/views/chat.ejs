@@ -12,18 +12,18 @@
 	<body>
 		<%- include('partials/header') %>
 		<main>
-			<div class="messagesFeed">
-				<div class="message otherMessage" data-id="">
-					<div class="author" slot="author">
-						<strong>Pierre Guillard :</strong>
-					</div>
-					<div class="textContent" slot="content">
-						Vous voici sur mon projet de chat, n'hésitez pas à poster un message
-						pour marquer votre passage :) Les messages ne sont pas encore
-						instantanés mais j'y travaille !
-					</div>
+			<h2 style="text-align: center">Chat (quasi) instantané</h2>
+			<div class="message" style="margin: auto; margin-block: 2px">
+				<div class="author" slot="author">
+					<strong>Pierre Guillard :</strong>
+				</div>
+				<div class="textContent" slot="content">
+					Vous voici sur mon projet de chat, n'hésitez pas à poster un message
+					pour marquer votre passage :) Les messages ne sont pas encore
+					instantanés (refresh toutes les 10 secondes) mais j'y travaille !
 				</div>
 			</div>
+			<div class="messagesFeed"></div>
 			<% if (locals.user) { %>
 			<form class="inputZone" method="post" action="">
 				<input
@@ -43,14 +43,14 @@
 			<div class="info">
 				<p style="text-align: center">
 					Si tu veux envoyer un message dans le chat, tu dois d'abord te créer
-					un compte.
+					un compte ou te connecter.
 				</p>
 			</div>
 			<% } %>
 		</main>
 
 		<template id="message">
-			<div class="message" data-id="">
+			<div class="message">
 				<div class="author" slot="author"><strong></strong></div>
 				<div class="textContent" slot="content">Bienvenue sur mon chat</div>
 			</div>
