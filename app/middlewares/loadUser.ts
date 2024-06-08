@@ -18,4 +18,4 @@ async function loadUser(req, res, next) {
 	}
 }
 
-module.exports = loadUser;
+export default loadUser;

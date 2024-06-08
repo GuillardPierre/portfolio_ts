@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 
 const mongooseConnection = {
 	async mgConnect(req, res, next) {
@@ -7,10 +7,10 @@ const mongooseConnection = {
 			console.log('Mongo connecté');
 			next();
 		} catch (error) {
-			console.log('ERREUR MW MONGO', error, mgConnected.connection.readyState);
+			console.log('ERREUR MW MONGO', error);
 			next();
 		}
 	},
 };
 
-module.exports = mongooseConnection;
+export default mongooseConnection;

@@ -28,4 +28,4 @@ const projectController = {
 	},
 };
 
-module.exports = projectController;
+export default projectController;

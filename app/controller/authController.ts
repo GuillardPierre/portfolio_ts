@@ -1,6 +1,6 @@
-const User = require('../models/mongoDb/User');
-const bcrypt = require('bcrypt');
-const { z } = require('zod');
+import User from '../models/mongoDb/User';
+import bcrypt from 'bcrypt';
+import { z } from 'zod';
 
 const authcontroller = {
 	signupPage(req, res) {
@@ -109,4 +109,4 @@ const authcontroller = {
 	},
 };
 
-module.exports = authcontroller;
+export default authcontroller;

@@ -86,4 +86,4 @@ const messageController = {
 	},
 };
 
-module.exports = messageController;
+export default messageController;
