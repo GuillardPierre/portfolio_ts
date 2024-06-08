@@ -96,8 +96,8 @@ const apiCall = {
 	async newUser(formData) {
 		try {
 			const rep = await fetch(
-				// `https://pierrofeu.alwaysdata.net/api/signup`,
-				'http://localhost:3000/api/signup',
+				`https://pierrofeu.alwaysdata.net/api/signup`,
+				// 'http://localhost:3000/api/signup',
 				{
 					method: 'POST',
 					body: formData,
@@ -117,8 +117,8 @@ const apiCall = {
 	async connectUser(formData) {
 		try {
 			const rep = await fetch(
-				// `https://pierrofeu.alwaysdata.net/api/login`,
-				'http://localhost:3000/api/login',
+				`https://pierrofeu.alwaysdata.net/api/login`,
+				// 'http://localhost:3000/api/login',
 				{
 					method: 'POST',
 					body: formData,

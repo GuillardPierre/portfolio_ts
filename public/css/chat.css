@@ -33,23 +33,17 @@ main {
 	border: 3px solid #808080;
 }
 
-.yourMessage {
-	align-self: flex-end;
+.message {
 	min-width: 250px;
-	max-width: 400px;
-	background-color: grey;
+	max-width: 350px;
 	margin: 2px;
 	padding: 10px;
 	border-radius: 10px;
+	background-color: #66d1ff;
 }
 
-.otherMessage {
-	min-width: 250px;
-	max-width: 400px;
-	background-color: grey;
-	margin: 2px;
-	padding: 10px;
-	border-radius: 10px;
+.yourMessage {
+	align-self: flex-end;
 }
 
 #name {

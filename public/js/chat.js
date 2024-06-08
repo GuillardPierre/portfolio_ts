@@ -11,6 +11,22 @@ const app = {
 			app.formZone.addEventListener('submit', app.sendMessage);
 		}
 		await app.getAllMessages();
+		setInterval(app.refresh, 10000);
+	},
+
+	async refresh() {
+		app.messagesZone.innerHTML = '';
+		const messages = await API.getAllMessagesAPI();
+		messages.allMessages.forEach((message) => {
+			if (!app.user) {
+				app.displayMessageInDom(message, 'otherMessage');
+			} else if (message.user_name === app.user.user) {
+				app.displayMessageInDom(message, 'yourMessage');
+			} else {
+				app.displayMessageInDom(message, 'otherMessage');
+			}
+			app.messagesZone.scrollTop = app.messagesZone.scrollHeight;
+		});
 	},
 
 	async getAllMessages() {
@@ -63,8 +79,8 @@ const API = {
 	async getAllMessagesAPI() {
 		try {
 			const rep = await fetch(
-				// `https://pierrofeu.alwaysdata.net/api/message`,
-				'http://localhost:3000/api/message'
+				`https://pierrofeu.alwaysdata.net/api/message`
+				// 'http://localhost:3000/api/message'
 			);
 			const json = rep.json();
 			if (!rep.ok) {
@@ -79,13 +95,10 @@ const API = {
 	async sendMessageToAPI(formData) {
 		try {
 			const rep = await fetch(
-				// `https://pierrofeu.alwaysdata.net/api/message`,
-				'http://localhost:3000/api/message',
+				`https://pierrofeu.alwaysdata.net/api/message`,
+				// 'http://localhost:3000/api/message',
 				{
 					method: 'POST',
-					// headers: {
-					// 	'Content-Type': 'application/json',
-					// },
 					body: formData,
 				}
 			);
@@ -103,8 +116,8 @@ const API = {
 	async getUser() {
 		try {
 			const rep = await fetch(
-				//`https://pierrofeu.alwaysdata.net/getUser`,
-				'http://localhost:3000/getUser'
+				`https://pierrofeu.alwaysdata.net/getUser`
+				// 'http://localhost:3000/getUser'
 			);
 			const json = await rep.json();
 			if (!rep.ok) {
