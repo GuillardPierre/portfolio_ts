@@ -1,3 +1,5 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 const projectController = {
     snake(req, res) {
         res.render('snake');
@@ -21,4 +23,4 @@ const projectController = {
         res.render('chat');
     },
 };
-export default projectController;
+exports.default = projectController;

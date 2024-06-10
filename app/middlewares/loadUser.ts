@@ -1,12 +1,13 @@
-import { Request, Response, NextFunction, ErrorRequestHandler } from 'express';
-const User = require('../models/mongoDb/User');
+import { Request, Response, NextFunction } from 'express';
+import User from '../models/mongoDb/User';
 
 async function loadUser(req: Request, res: Response, next: NextFunction) {
 	try {
 		if (req.session.userId) {
 			const user = await User.findById(req.session.userId);
 			if (user) {
-				req.user = user;
+				// On pourrait stocker les données du User dans la requête si besoin mais pour l'instant c'est inutile
+				// req.user = user;
 				res.locals.user = user;
 				console.log('utilisateur connecté');
 			}

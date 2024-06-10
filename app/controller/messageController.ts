@@ -1,8 +1,8 @@
-import { Request, Response, NextFunction, ErrorRequestHandler } from 'express';
-const Message = require('../models/mongoDb/Message');
-const User = require('../models/mongoDb/User');
+import { Request, Response } from 'express';
+import Message from '../models/mongoDb/Message';
+import User from '../models/mongoDb/User';
 
-const { z } = require('zod');
+import { z } from 'zod';
 
 const messageController = {
 	async save(req: Request, res: Response) {
@@ -31,7 +31,7 @@ const messageController = {
 			return;
 		}
 
-		const newMessage = await Message.create({
+		await Message.create({
 			content: validationBody.data.content,
 			user_name: user.name,
 		});
@@ -72,12 +72,12 @@ const messageController = {
 		}
 
 		if (req.body.messageId) {
-			const message = await Message.deleteOne(req.body.messageId);
+			await Message.deleteOne(req.body.messageId);
 			res.status(200).json({ message: 'message supprimé' });
 		}
 
 		if (req.body.userId) {
-			const allMessages = await Message.deleteMany({
+			await Message.deleteMany({
 				user_id: req.body.userId,
 			});
 			res.status(200).json({ message: 'messages supprimé' });

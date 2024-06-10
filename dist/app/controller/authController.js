@@ -1,3 +1,4 @@
+"use strict";
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -7,9 +8,13 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-const User = require('../models/mongoDb/User');
-const bcrypt = require('bcrypt');
-const { z } = require('zod');
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+const User_1 = __importDefault(require("../models/mongoDb/User"));
+const bcrypt_1 = __importDefault(require("bcrypt"));
+const zod_1 = require("zod");
 const authcontroller = {
     signupPage(req, res) {
         res.render('signup');
@@ -19,10 +24,10 @@ const authcontroller = {
     },
     signup(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const schema = z.object({
-                name: z.string().min(2),
-                password: z.string().min(3),
-                password__confirmation: z.string(),
+            const schema = zod_1.z.object({
+                name: zod_1.z.string().min(2),
+                password: zod_1.z.string().min(3),
+                password__confirmation: zod_1.z.string(),
             });
             const validationBody = schema.safeParse(req.body);
             if (!validationBody.success) {
@@ -39,15 +44,15 @@ const authcontroller = {
                 });
                 return;
             }
-            const userWithSameName = yield User.findOne({
+            const userWithSameName = yield User_1.default.findOne({
                 name: validationBody.data.name,
             });
             if (userWithSameName) {
                 res.status(400).json({ message: 'Pseudo déjà pris' });
                 return;
             }
-            const hashedPassword = yield bcrypt.hash(validationBody.data.password, 10);
-            const user = yield User.create({
+            const hashedPassword = yield bcrypt_1.default.hash(validationBody.data.password, 10);
+            const user = yield User_1.default.create({
                 name: validationBody.data.name,
                 password: hashedPassword,
             });
@@ -56,14 +61,14 @@ const authcontroller = {
     },
     login(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const userIsExist = yield User.findOne({ name: req.body.name });
+            const userIsExist = yield User_1.default.findOne({ name: req.body.name });
             if (!userIsExist) {
                 res
                     .status(401)
                     .json({ statusCode: 401, message: 'Mauvais identifiants' });
                 return;
             }
-            const passwordIsValid = yield bcrypt.compare(req.body.password, userIsExist.password);
+            const passwordIsValid = yield bcrypt_1.default.compare(req.body.password, userIsExist.password);
             if (!passwordIsValid) {
                 res
                     .status(401)
@@ -83,7 +88,7 @@ const authcontroller = {
     accountInformation(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             if (req.session.userId) {
-                const user = yield User.findById(req.session.userId);
+                const user = yield User_1.default.findById(req.session.userId);
                 if (!user) {
                     res.status(404).json({
                         statusCode: 404,
@@ -101,4 +106,4 @@ const authcontroller = {
         });
     },
 };
-export default authcontroller;
+exports.default = authcontroller;

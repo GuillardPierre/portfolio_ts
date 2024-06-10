@@ -1,4 +1,4 @@
-import { Request, Response, NextFunction, ErrorRequestHandler } from 'express';
+import { Request, Response } from 'express';
 import User from '../models/mongoDb/User';
 import bcrypt from 'bcrypt';
 import { z } from 'zod';
@@ -50,7 +50,7 @@ const authcontroller = {
 
 		const hashedPassword = await bcrypt.hash(validationBody.data.password, 10);
 
-		const user = await User.create({
+		await User.create({
 			name: validationBody.data.name,
 			password: hashedPassword,
 		});

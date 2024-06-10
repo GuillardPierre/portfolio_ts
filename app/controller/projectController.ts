@@ -1,4 +1,4 @@
-import { Request, Response, NextFunction, ErrorRequestHandler } from 'express';
+import { Request, Response } from 'express';
 
 const projectController = {
 	snake(req: Request, res: Response) {

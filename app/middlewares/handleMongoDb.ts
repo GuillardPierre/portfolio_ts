@@ -1,10 +1,10 @@
-import { Request, Response, NextFunction, ErrorRequestHandler } from 'express';
+import { Request, Response, NextFunction } from 'express';
 import mongoose from 'mongoose';
 
 const mongooseConnection = {
 	async mgConnect(req: Request, res: Response, next: NextFunction) {
 		try {
-			const mgConnected = await mongoose.connect(`${process.env.MONGODB}`);
+			await mongoose.connect(`${process.env.MONGODB}`);
 			console.log('Mongo connecté');
 			next();
 		} catch (error) {

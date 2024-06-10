@@ -1,3 +1,5 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 const mongoose = require('mongoose');
 const utilisateurSchema = new mongoose.Schema({
     name: { type: String, unique: true, required: true },
@@ -5,4 +7,5 @@ const utilisateurSchema = new mongoose.Schema({
     created_at: { type: Date, default: Date.now },
     modified_at: { type: Date, default: Date.now },
 });
-module.exports = mongoose.model('User', utilisateurSchema);
+const User = mongoose.model('User', utilisateurSchema);
+exports.default = User;
