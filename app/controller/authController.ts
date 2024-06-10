@@ -1,17 +1,18 @@
+import { Request, Response, NextFunction, ErrorRequestHandler } from 'express';
 import User from '../models/mongoDb/User';
 import bcrypt from 'bcrypt';
 import { z } from 'zod';
 
 const authcontroller = {
-	signupPage(req, res) {
+	signupPage(req: Request, res: Response) {
 		res.render('signup');
 	},
 
-	showAccount(req, res) {
+	showAccount(req: Request, res: Response) {
 		res.render('account');
 	},
 
-	async signup(req, res) {
+	async signup(req: Request, res: Response) {
 		const schema = z.object({
 			name: z.string().min(2),
 			password: z.string().min(3),
@@ -57,7 +58,7 @@ const authcontroller = {
 		res.status(201).json({ statusCode: 201, message: 'Compte créé' });
 	},
 
-	async login(req, res) {
+	async login(req: Request, res: Response) {
 		const userIsExist = await User.findOne({ name: req.body.name });
 
 		if (!userIsExist) {
@@ -84,12 +85,12 @@ const authcontroller = {
 			.json({ statusCode: 200, message: 'Utilisateur connecté !' });
 	},
 
-	logout(req, res) {
+	logout(req: Request, res: Response) {
 		req.session.destroy();
 		res.redirect('/');
 	},
 
-	async accountInformation(req, res) {
+	async accountInformation(req: Request, res: Response) {
 		if (req.session.userId) {
 			const user = await User.findById(req.session.userId);
 			if (!user) {

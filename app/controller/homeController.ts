@@ -1,5 +1,6 @@
+import { Request, Response } from 'express';
 const homeController = {
-	index(req, res) {
+	index(req: Request, res: Response) {
 		res.render('accueil');
 	},
 };

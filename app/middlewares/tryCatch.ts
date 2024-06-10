@@ -1,5 +1,7 @@
-export function catchErrors(fn) {
-	return async function (req, res, next) {
+import { Request, Response, NextFunction, ErrorRequestHandler } from 'express';
+
+export function catchErrors(fn: Function) {
+	return async function (req: Request, res: Response, next: NextFunction) {
 		try {
 			await fn(req, res, next);
 		} catch (error) {
@@ -8,7 +10,12 @@ export function catchErrors(fn) {
 	};
 }
 
-export function errorHandler(error, req, res, next) {
+export function errorHandler(
+	error: any,
+	req: Request,
+	res: Response,
+	next: NextFunction
+) {
 	let statusCode = 500;
 	let message = "Une erreur à été intercepté dans le mw d'erreur";
 

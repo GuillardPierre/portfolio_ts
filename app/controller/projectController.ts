@@ -1,29 +1,31 @@
+import { Request, Response, NextFunction, ErrorRequestHandler } from 'express';
+
 const projectController = {
-	snake(req, res) {
+	snake(req: Request, res: Response) {
 		res.render('snake');
 	},
 
-	meteo(req, res) {
+	meteo(req: Request, res: Response) {
 		res.render('meteo');
 	},
 
-	pokemon(req, res) {
+	pokemon(req: Request, res: Response) {
 		res.render('pokemon');
 	},
 
-	department(req, res) {
+	department(req: Request, res: Response) {
 		res.render('departmentKing');
 	},
 
-	pendu(req, res) {
+	pendu(req: Request, res: Response) {
 		res.render('pendu');
 	},
 
-	pfc(req, res) {
+	pfc(req: Request, res: Response) {
 		res.render('PFC');
 	},
 
-	chat(req, res) {
+	chat(req: Request, res: Response) {
 		res.render('chat');
 	},
 };

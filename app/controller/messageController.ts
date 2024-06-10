@@ -1,10 +1,11 @@
+import { Request, Response, NextFunction, ErrorRequestHandler } from 'express';
 const Message = require('../models/mongoDb/Message');
 const User = require('../models/mongoDb/User');
 
 const { z } = require('zod');
 
 const messageController = {
-	async save(req, res) {
+	async save(req: Request, res: Response) {
 		const { userId } = req.session;
 		const user = await User.findById(userId);
 
@@ -39,7 +40,7 @@ const messageController = {
 		return;
 	},
 
-	async display(req, res) {
+	async display(req: Request, res: Response) {
 		const allMessages = await Message.find();
 
 		if (!allMessages) {
@@ -52,7 +53,7 @@ const messageController = {
 		res.status(200).json({ allMessages });
 	},
 
-	async Delete(req, res) {
+	async Delete(req: Request, res: Response) {
 		const { userId } = req.session;
 		const user = await User.findById(userId);
 

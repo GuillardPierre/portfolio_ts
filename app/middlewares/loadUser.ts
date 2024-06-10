@@ -1,6 +1,7 @@
+import { Request, Response, NextFunction, ErrorRequestHandler } from 'express';
 const User = require('../models/mongoDb/User');
 
-async function loadUser(req, res, next) {
+async function loadUser(req: Request, res: Response, next: NextFunction) {
 	try {
 		if (req.session.userId) {
 			const user = await User.findById(req.session.userId);
